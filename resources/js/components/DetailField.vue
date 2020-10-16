@@ -38,6 +38,10 @@ export default {
             },
     },
     mounted() {
+        if(this.field.markAsDone)
+        {
+            this.percentage = 100;
+        }
         this.setPecentage();
     },
 

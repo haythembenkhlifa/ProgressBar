@@ -26,4 +26,8 @@ class ProgressBar extends Field
     {
         return $this->withMeta(["endPoint" => $endPoint]);
     }
+    public function markAsDone($markAsDone = false)
+    {
+        return $this->withMeta(["markAsDone" => $markAsDone]);
+    }
 }
