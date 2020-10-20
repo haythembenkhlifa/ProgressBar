@@ -1,16 +1,18 @@
 <template>
-  <div style="display:flex">
+  <div style="display:flex" v-show="show">
     <div
       style="width:85%;background-color: aliceblue;border-radius: 15px;"
-      ref="maindiv">
+      ref="maindiv"
+    >
       <div class="skill" v-bind:style="{ width: percentage + '%' }">
         {{ percentage }}%
       </div>
     </div>
     <div style="width:15%;text-align:center">
-            <p  v-bind:class="getClass()">{{percentage == 100 ? 'Done' : 'Processing'}}</p>
+      <p v-bind:class="getClass()">
+        {{ percentage == 100 ? "Done" : "Processing" }}
+      </p>
     </div>
-
   </div>
 </template>
 
@@ -20,6 +22,7 @@ export default {
   data() {
     return {
       percentage: 0,
+      show: true,
     };
   },
   methods: {
@@ -28,7 +31,8 @@ export default {
         .get(this.field.endPoint)
         .then((response) => {
           //return response.data;
-          this.percentage = response.data;
+          this.percentage = response.data.percentage;
+          this.show = response.data.show;
           //alert(response.data);
         })
         .catch((error) => {
@@ -37,18 +41,20 @@ export default {
     },
     setPecentage() {
       setInterval(() => {
-        if (this.percentage < 100) {
+        if (this.percentage>=0 && this.percentage < 100) {
           this.getPercentage();
           //this.percentage++;
         }
+
+
       }, this.field.callEvery);
     },
-        getClass(){
-        return {
-            'loading': this.percentage<100,
-            'done': this.percentage == 100
-        }
-        },
+    getClass() {
+      return {
+        loading: this.percentage < 100,
+        done: this.percentage == 100,
+      };
+    },
   },
   mounted() {
     if (this.field.markAsDone) {
@@ -82,23 +88,23 @@ p {
   transition: width 0.5s ease-in-out;
 }
 .loading:after {
-   overflow: hidden;
-   display: inline-block;
-   vertical-align: bottom;
-   -webkit-animation: ellipsis steps(4,end) 2000ms infinite;
-   animation: ellipsis steps(4,end) 2000ms infinite;
-   content: "\2026"; /* ascii code for the ellipsis character */
-   width: 0px;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+  -webkit-animation: ellipsis steps(4, end) 2000ms infinite;
+  animation: ellipsis steps(4, end) 2000ms infinite;
+  content: "\2026"; /* ascii code for the ellipsis character */
+  width: 0px;
 }
-.loading{
-   margin-top: 5%;
-   text-align: left;
-   margin-left: 19%;
+.loading {
+  margin-top: 5%;
+  text-align: left;
+  margin-left: 19%;
 }
-.done{
-   margin-top: 5%;
-   text-align: left;
-   margin-left: 19%;
+.done {
+  margin-top: 5%;
+  text-align: left;
+  margin-left: 19%;
 }
 
 @keyframes ellipsis {

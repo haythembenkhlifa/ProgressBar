@@ -358,7 +358,7 @@ exports = module.exports = __webpack_require__(9)(false);
 
 
 // module
-exports.push([module.i, "\np {\n  font-size: 20px;\n}\n.container {\n  background-color: rgb(192, 192, 192);\n  width: 100%;\n  border-radius: 15px;\n}\n.skill {\n  background-color: rgb(116, 194, 92);\n  color: black;\n  padding: 1%;\n  text-align: right;\n  font-size: 20px;\n  border-radius: 15px;\n  -webkit-transition: width 0.5s ease-in-out;\n  transition: width 0.5s ease-in-out;\n}\n.loading:after {\n   overflow: hidden;\n   display: inline-block;\n   vertical-align: bottom;\n   -webkit-animation: ellipsis steps(4,end) 2000ms infinite;\n   animation: ellipsis steps(4,end) 2000ms infinite;\n   content: \"\\2026\"; /* ascii code for the ellipsis character */\n   width: 0px;\n}\n.loading{\n   margin-top: 5%;\n   text-align: left;\n   margin-left: 19%;\n}\n.done{\n   margin-top: 5%;\n   text-align: left;\n   margin-left: 19%;\n}\n@keyframes ellipsis {\nto {\n    width: 20px;\n}\n}\n@-webkit-keyframes ellipsis {\nto {\n    width: 20px;\n}\n}\n", ""]);
+exports.push([module.i, "\np {\n  font-size: 20px;\n}\n.container {\n  background-color: rgb(192, 192, 192);\n  width: 100%;\n  border-radius: 15px;\n}\n.skill {\n  background-color: rgb(116, 194, 92);\n  color: black;\n  padding: 1%;\n  text-align: right;\n  font-size: 20px;\n  border-radius: 15px;\n  -webkit-transition: width 0.5s ease-in-out;\n  transition: width 0.5s ease-in-out;\n}\n.loading:after {\n  overflow: hidden;\n  display: inline-block;\n  vertical-align: bottom;\n  -webkit-animation: ellipsis steps(4, end) 2000ms infinite;\n  animation: ellipsis steps(4, end) 2000ms infinite;\n  content: \"\\2026\"; /* ascii code for the ellipsis character */\n  width: 0px;\n}\n.loading {\n  margin-top: 5%;\n  text-align: left;\n  margin-left: 19%;\n}\n.done {\n  margin-top: 5%;\n  text-align: left;\n  margin-left: 19%;\n}\n@keyframes ellipsis {\nto {\n    width: 20px;\n}\n}\n@-webkit-keyframes ellipsis {\nto {\n    width: 20px;\n}\n}\n", ""]);
 
 // exports
 
@@ -728,12 +728,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["resource", "resourceName", "resourceId", "field", "callEvery"],
   data: function data() {
     return {
-      percentage: 0
+      percentage: 0,
+      show: true
     };
   },
 
@@ -743,7 +746,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       axios.get(this.field.endPoint).then(function (response) {
         //return response.data;
-        _this.percentage = response.data;
+        _this.percentage = response.data.percentage;
+        _this.show = response.data.show;
         //alert(response.data);
       }).catch(function (error) {
         console.log(error.response.data);
@@ -753,7 +757,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       setInterval(function () {
-        if (_this2.percentage < 100) {
+        if (_this2.percentage >= 0 && _this2.percentage < 100) {
           _this2.getPercentage();
           //this.percentage++;
         }
@@ -761,8 +765,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     getClass: function getClass() {
       return {
-        'loading': this.percentage < 100,
-        'done': this.percentage == 100
+        loading: this.percentage < 100,
+        done: this.percentage == 100
       };
     }
   },
@@ -782,32 +786,45 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticStyle: { display: "flex" } }, [
-    _c(
-      "div",
-      {
-        ref: "maindiv",
-        staticStyle: {
-          width: "85%",
-          "background-color": "aliceblue",
-          "border-radius": "15px"
-        }
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "skill", style: { width: _vm.percentage + "%" } },
-          [_vm._v("\n      " + _vm._s(_vm.percentage) + "%\n    ")]
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c("div", { staticStyle: { width: "15%", "text-align": "center" } }, [
-      _c("p", { class: _vm.getClass() }, [
-        _vm._v(_vm._s(_vm.percentage == 100 ? "Done" : "Processing"))
+  return _c(
+    "div",
+    {
+      directives: [
+        { name: "show", rawName: "v-show", value: _vm.show, expression: "show" }
+      ],
+      staticStyle: { display: "flex" }
+    },
+    [
+      _c(
+        "div",
+        {
+          ref: "maindiv",
+          staticStyle: {
+            width: "85%",
+            "background-color": "aliceblue",
+            "border-radius": "15px"
+          }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "skill", style: { width: _vm.percentage + "%" } },
+            [_vm._v("\n      " + _vm._s(_vm.percentage) + "%\n    ")]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticStyle: { width: "15%", "text-align": "center" } }, [
+        _c("p", { class: _vm.getClass() }, [
+          _vm._v(
+            "\n      " +
+              _vm._s(_vm.percentage == 100 ? "Done" : "Processing") +
+              "\n    "
+          )
+        ])
       ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
