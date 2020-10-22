@@ -1,16 +1,16 @@
 <template>
   <div style="display:flex" v-show="show">
     <div
-      style="width:85%;background-color: aliceblue;border-radius: 15px;"
+      style="width:80%;background-color: aliceblue;border-radius: 15px;"
       ref="maindiv"
     >
       <div class="skill" v-bind:style="{ width: percentage + '%' }">
         {{ percentage }}%
       </div>
     </div>
-    <div style="width:15%;text-align:center">
+    <div style="width:20%;text-align:left;font-weight: 700;">
       <p v-bind:class="getClass()">
-        {{ percentage == 100 ? "Done" : "Processing" }}
+        {{ getStatus() }}
       </p>
     </div>
   </div>
@@ -23,6 +23,8 @@ export default {
     return {
       percentage: 0,
       show: true,
+      status:"initializing",
+
     };
   },
   methods: {
@@ -51,10 +53,24 @@ export default {
     },
     getClass() {
       return {
-        loading: this.percentage < 100,
+        processing:this.percentage>0 && this.percentage < 100 ,
         done: this.percentage == 100,
-      };
+        initializing:this.percentage == 0,
+        };
     },
+    getStatus()
+    {
+      if (this.percentage == 0) {
+        return "Initializing"
+      }
+      if(this.percentage>0 && this.percentage<100) {
+        return "Processing";
+      }
+      if (this.percentage == 100) {
+        return "Done"
+      }
+
+    }
   },
   mounted() {
     if (this.field.markAsDone) {
@@ -87,7 +103,7 @@ p {
   -o-transition: width 0.5s ease-in-out;
   transition: width 0.5s ease-in-out;
 }
-.loading:after {
+.processing:after {
   overflow: hidden;
   display: inline-block;
   vertical-align: bottom;
@@ -96,17 +112,30 @@ p {
   content: "\2026"; /* ascii code for the ellipsis character */
   width: 0px;
 }
-.loading {
-  margin-top: 5%;
+.initializing:after {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+  -webkit-animation: ellipsis steps(4, end) 2000ms infinite;
+  animation: ellipsis steps(4, end) 2000ms infinite;
+  content: "\2026"; /* ascii code for the ellipsis character */
+  width: 0px;
+}
+.processing {
+  margin-top: 4%;
   text-align: left;
   margin-left: 19%;
 }
 .done {
-  margin-top: 5%;
+  margin-top: 4%;
   text-align: left;
   margin-left: 19%;
 }
-
+.initializing {
+  margin-top: 4%;
+  text-align: left;
+  margin-left: 19%;
+}
 @keyframes ellipsis {
   to {
     width: 20px;

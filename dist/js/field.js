@@ -358,7 +358,7 @@ exports = module.exports = __webpack_require__(9)(false);
 
 
 // module
-exports.push([module.i, "\np {\n  font-size: 20px;\n}\n.container {\n  background-color: rgb(192, 192, 192);\n  width: 100%;\n  border-radius: 15px;\n}\n.skill {\n  background-color: rgb(116, 194, 92);\n  color: black;\n  padding: 1%;\n  text-align: right;\n  font-size: 20px;\n  border-radius: 15px;\n  -webkit-transition: width 0.5s ease-in-out;\n  transition: width 0.5s ease-in-out;\n}\n.loading:after {\n  overflow: hidden;\n  display: inline-block;\n  vertical-align: bottom;\n  -webkit-animation: ellipsis steps(4, end) 2000ms infinite;\n  animation: ellipsis steps(4, end) 2000ms infinite;\n  content: \"\\2026\"; /* ascii code for the ellipsis character */\n  width: 0px;\n}\n.loading {\n  margin-top: 5%;\n  text-align: left;\n  margin-left: 19%;\n}\n.done {\n  margin-top: 5%;\n  text-align: left;\n  margin-left: 19%;\n}\n@keyframes ellipsis {\nto {\n    width: 20px;\n}\n}\n@-webkit-keyframes ellipsis {\nto {\n    width: 20px;\n}\n}\n", ""]);
+exports.push([module.i, "\np {\n  font-size: 20px;\n}\n.container {\n  background-color: rgb(192, 192, 192);\n  width: 100%;\n  border-radius: 15px;\n}\n.skill {\n  background-color: rgb(116, 194, 92);\n  color: black;\n  padding: 1%;\n  text-align: right;\n  font-size: 20px;\n  border-radius: 15px;\n  -webkit-transition: width 0.5s ease-in-out;\n  transition: width 0.5s ease-in-out;\n}\n.processing:after {\n  overflow: hidden;\n  display: inline-block;\n  vertical-align: bottom;\n  -webkit-animation: ellipsis steps(4, end) 2000ms infinite;\n  animation: ellipsis steps(4, end) 2000ms infinite;\n  content: \"\\2026\"; /* ascii code for the ellipsis character */\n  width: 0px;\n}\n.initializing:after {\n  overflow: hidden;\n  display: inline-block;\n  vertical-align: bottom;\n  -webkit-animation: ellipsis steps(4, end) 2000ms infinite;\n  animation: ellipsis steps(4, end) 2000ms infinite;\n  content: \"\\2026\"; /* ascii code for the ellipsis character */\n  width: 0px;\n}\n.processing {\n  margin-top: 4%;\n  text-align: left;\n  margin-left: 19%;\n}\n.done {\n  margin-top: 4%;\n  text-align: left;\n  margin-left: 19%;\n}\n.initializing {\n  margin-top: 4%;\n  text-align: left;\n  margin-left: 19%;\n}\n@keyframes ellipsis {\nto {\n    width: 20px;\n}\n}\n@-webkit-keyframes ellipsis {\nto {\n    width: 20px;\n}\n}\n", ""]);
 
 // exports
 
@@ -736,7 +736,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       percentage: 0,
-      show: true
+      show: true,
+      status: "initializing"
+
     };
   },
 
@@ -765,9 +767,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     getClass: function getClass() {
       return {
-        loading: this.percentage < 100,
-        done: this.percentage == 100
+        processing: this.percentage > 0 && this.percentage < 100,
+        done: this.percentage == 100,
+        initializing: this.percentage == 0
       };
+    },
+    getStatus: function getStatus() {
+      if (this.percentage == 0) {
+        return "Initializing";
+      }
+      if (this.percentage > 0 && this.percentage < 100) {
+        return "Processing";
+      }
+      if (this.percentage == 100) {
+        return "Done";
+      }
     }
   },
   mounted: function mounted() {
@@ -800,7 +814,7 @@ var render = function() {
         {
           ref: "maindiv",
           staticStyle: {
-            width: "85%",
+            width: "80%",
             "background-color": "aliceblue",
             "border-radius": "15px"
           }
@@ -814,15 +828,21 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("div", { staticStyle: { width: "15%", "text-align": "center" } }, [
-        _c("p", { class: _vm.getClass() }, [
-          _vm._v(
-            "\n      " +
-              _vm._s(_vm.percentage == 100 ? "Done" : "Processing") +
-              "\n    "
-          )
-        ])
-      ])
+      _c(
+        "div",
+        {
+          staticStyle: {
+            width: "20%",
+            "text-align": "left",
+            "font-weight": "700"
+          }
+        },
+        [
+          _c("p", { class: _vm.getClass() }, [
+            _vm._v("\n      " + _vm._s(_vm.getStatus()) + "\n    ")
+          ])
+        ]
+      )
     ]
   )
 }
