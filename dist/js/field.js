@@ -249,7 +249,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['resourceName', 'field']
+  props: ['resourceName', 'field'],
+  data: function data() {
+    return {
+      percentage: 0
+    };
+  },
+
+  methods: {
+    getPercentage: function getPercentage() {
+      var _this = this;
+
+      axios.get(this.field.endPoint).then(function (response) {
+        //return response.data;
+        _this.percentage = response.data.percentage;
+        //alert(response.data);
+      }).catch(function (error) {
+        console.log(error.response.data);
+      });
+    },
+    setPecentage: function setPecentage() {
+      var _this2 = this;
+
+      setInterval(function () {
+        if (_this2.percentage >= 0 && _this2.percentage < 100) {
+          _this2.getPercentage();
+          //this.percentage++;
+        }
+      }, this.field.callEvery);
+    }
+  },
+  mounted: function mounted() {
+    if (this.field.markAsDone) {
+      this.percentage = 100;
+    }
+    this.setPecentage();
+  }
 });
 
 /***/ }),
@@ -260,7 +295,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("label", { attrs: { for: "" } }, [
+    _vm._v(_vm._s(_vm.percentage) + "%")
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
