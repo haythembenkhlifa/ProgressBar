@@ -1,5 +1,5 @@
 <template>
-  <div style="display:flex" v-show="show">
+  <div class="flex border-b border-40 pt-4 pb-4" v-show="show">
     <div
       style="width:80%;background-color: aliceblue;border-radius: 15px;"
       ref="maindiv"

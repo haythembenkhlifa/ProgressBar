@@ -843,7 +843,7 @@ var render = function() {
       directives: [
         { name: "show", rawName: "v-show", value: _vm.show, expression: "show" }
       ],
-      staticStyle: { display: "flex" }
+      staticClass: "flex border-b border-40 pt-4 pb-4"
     },
     [
       _c(
