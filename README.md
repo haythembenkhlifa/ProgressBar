@@ -3,8 +3,8 @@
 [![Packagist](https://img.shields.io/packagist/v/haythem/progress-bar.svg)](https://packagist.org/packages/haythem/)
 [![Packagist](https://img.shields.io/packagist/l/haythem/progress-bar.svg)](https://packagist.org/packages/haythem/progress-bar)
 
-Package Description: A Progress bar Nova field
-
+Package Description: A dynamic progress bar field for laravel nova
+ 
 
 
 ![](progress.png)
