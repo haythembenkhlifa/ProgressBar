@@ -316,19 +316,19 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(7)
+  __webpack_require__(22)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(12)
 /* template */
-var __vue_template__ = __webpack_require__(13)
+var __vue_template__ = __webpack_require__(24)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-0224618e"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -361,46 +361,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(8);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(10)("3f186d3f", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0224618e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DetailField.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0224618e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DetailField.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(9)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\np {\n  font-size: 20px;\n}\n.container {\n  background-color: rgb(192, 192, 192);\n  width: 100%;\n  border-radius: 15px;\n}\n.skill {\n  background-color: rgb(116, 194, 92);\n  color: black;\n  padding: 1%;\n  text-align: right;\n  font-size: 20px;\n  border-radius: 15px;\n  -webkit-transition: width 0.5s ease-in-out;\n  transition: width 0.5s ease-in-out;\n}\n.processing:after {\n  overflow: hidden;\n  display: inline-block;\n  vertical-align: bottom;\n  -webkit-animation: ellipsis steps(4, end) 2000ms infinite;\n  animation: ellipsis steps(4, end) 2000ms infinite;\n  content: \"\\2026\"; /* ascii code for the ellipsis character */\n  width: 0px;\n}\n.initializing:after {\n  overflow: hidden;\n  display: inline-block;\n  vertical-align: bottom;\n  -webkit-animation: ellipsis steps(4, end) 2000ms infinite;\n  animation: ellipsis steps(4, end) 2000ms infinite;\n  content: \"\\2026\"; /* ascii code for the ellipsis character */\n  width: 0px;\n}\n.processing {\n  margin-top: 4%;\n  text-align: left;\n  margin-left: 19%;\n}\n.done {\n  margin-top: 4%;\n  text-align: left;\n  margin-left: 19%;\n}\n.initializing {\n  margin-top: 4%;\n  text-align: left;\n  margin-left: 19%;\n}\n@keyframes ellipsis {\nto {\n    width: 20px;\n}\n}\n@-webkit-keyframes ellipsis {\nto {\n    width: 20px;\n}\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 7 */,
+/* 8 */,
 /* 9 */
 /***/ (function(module, exports) {
 
@@ -767,6 +729,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["resource", "resourceName", "resourceId", "field", "callEvery"],
@@ -774,8 +737,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       percentage: 0,
       show: true,
-      status: "initializing"
-
+      status: this.field.initLabel ? this.field.initLabel : "initializing"
     };
   },
 
@@ -811,13 +773,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     getStatus: function getStatus() {
       if (this.percentage == 0) {
-        return "Initializing";
+        return this.field.initLabel ? this.field.initLabel : "Initializing";
       }
       if (this.percentage > 0 && this.percentage < 100) {
-        return "Processing";
+        return this.field.processingLabel ? this.field.processingLabel : "Processing";
       }
       if (this.percentage == 100) {
-        return "Done";
+        return this.field.doneLabel ? this.field.doneLabel : "Done";
       }
     }
   },
@@ -830,70 +792,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      directives: [
-        { name: "show", rawName: "v-show", value: _vm.show, expression: "show" }
-      ],
-      staticClass: "flex border-b border-40 pb-4 pt-4 -mx-6 px-6"
-    },
-    [
-      _c(
-        "div",
-        {
-          ref: "maindiv",
-          staticStyle: {
-            width: "80%",
-            "background-color": "aliceblue",
-            "border-radius": "15px"
-          }
-        },
-        [
-          _c(
-            "div",
-            { staticClass: "skill", style: { width: _vm.percentage + "%" } },
-            [_vm._v("\n      " + _vm._s(_vm.percentage) + "%\n    ")]
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticStyle: {
-            width: "20%",
-            "text-align": "left",
-            "font-weight": "700"
-          }
-        },
-        [
-          _c("p", { class: _vm.getClass() }, [
-            _vm._v("\n      " + _vm._s(_vm.getStatus()) + "\n    ")
-          ])
-        ]
-      )
-    ]
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-0224618e", module.exports)
-  }
-}
-
-/***/ }),
+/* 13 */,
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -28544,6 +28443,126 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(23);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(10)("25a2aee6", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0224618e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DetailField.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0224618e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DetailField.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(9)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\np[data-v-0224618e] {\n  font-size: 20px;\n}\n.skill[data-v-0224618e] {\n  color: black;\n  padding: 1%;\n  text-align: right;\n  font-size: 20px;\n  border-radius: 15px;\n  -webkit-transition: width 0.5s ease-in-out;\n  transition: width 0.5s ease-in-out;\n}\n.processing[data-v-0224618e]:after {\n  overflow: hidden;\n  display: inline-block;\n  vertical-align: bottom;\n  -webkit-animation: ellipsis-data-v-0224618e steps(4, end) 2000ms infinite;\n  animation: ellipsis-data-v-0224618e steps(4, end) 2000ms infinite;\n  content: \"\\2026\"; /* ascii code for the ellipsis character */\n  width: 0px;\n}\n.initializing[data-v-0224618e]:after {\n  overflow: hidden;\n  display: inline-block;\n  vertical-align: bottom;\n  -webkit-animation: ellipsis-data-v-0224618e steps(4, end) 2000ms infinite;\n  animation: ellipsis-data-v-0224618e steps(4, end) 2000ms infinite;\n  content: \"\\2026\"; /* ascii code for the ellipsis character */\n  width: 0px;\n}\n.processing[data-v-0224618e] {\n  margin-top: 4%;\n  text-align: left;\n  margin-left: 19%;\n}\n.done[data-v-0224618e] {\n  margin-top: 4%;\n  text-align: left;\n  margin-left: 19%;\n}\n.initializing[data-v-0224618e] {\n  margin-top: 4%;\n  text-align: left;\n  margin-left: 19%;\n}\n@keyframes ellipsis-data-v-0224618e {\nto {\n    width: 20px;\n}\n}\n@-webkit-keyframes ellipsis-data-v-0224618e {\nto {\n    width: 20px;\n}\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      directives: [
+        { name: "show", rawName: "v-show", value: _vm.show, expression: "show" }
+      ],
+      staticClass: "flex border-b border-40 pb-4 pt-4 -mx-6 px-6"
+    },
+    [
+      _c(
+        "div",
+        {
+          ref: "maindiv",
+          staticStyle: {
+            width: "80%",
+            "background-color": "aliceblue",
+            "border-radius": "15px"
+          },
+          style: {
+            "background-color": this.field.barBackgroundColor
+              ? this.field.barBackgroundColor
+              : "#C0C0C0"
+          }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "skill",
+              style: {
+                width: _vm.percentage + "%",
+                "background-color": this.field.barColor
+                  ? this.field.barColor
+                  : "#74C25C"
+              }
+            },
+            [_vm._v("\n      " + _vm._s(_vm.percentage) + "%\n    ")]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticStyle: {
+            width: "20%",
+            "text-align": "left",
+            "font-weight": "700"
+          }
+        },
+        [
+          _c("p", { class: _vm.getClass() }, [
+            _vm._v("\n      " + _vm._s(_vm.getStatus()) + "\n    ")
+          ])
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0224618e", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

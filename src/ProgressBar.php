@@ -30,4 +30,30 @@ class ProgressBar extends Field
     {
         return $this->withMeta(["markAsDone" => $markAsDone]);
     }
+
+    public function barColor($barColor = "")
+    {
+        return $this->withMeta(["barColor" => $barColor]);
+    }
+
+    public function barBackgroundColor($barBackgroundColor = "")
+    {
+        return $this->withMeta(["barBackgroundColor" => $barBackgroundColor]);
+    }
+
+    public function initLabel($initLabel = "initializing")
+    {
+        return $this->withMeta(["initLabel" => $initLabel]);
+    }
+
+    public function processingLabel($processingLabel = "Processing")
+    {
+        return $this->withMeta(["processingLabel" => $processingLabel]);
+    }
+
+    public function doneLabel($doneLabel = "done")
+    {
+        return $this->withMeta(["doneLabel" => $doneLabel]);
+    }
+
 }

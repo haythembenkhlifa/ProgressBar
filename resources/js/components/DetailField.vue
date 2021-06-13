@@ -2,9 +2,10 @@
   <div class="flex border-b border-40 pb-4 pt-4 -mx-6 px-6" v-show="show">
     <div
       style="width:80%;background-color: aliceblue;border-radius: 15px;"
+      :style="{'background-color':this.field.barBackgroundColor ? this.field.barBackgroundColor : '#C0C0C0'}"
       ref="maindiv"
     >
-      <div class="skill" v-bind:style="{ width: percentage + '%' }">
+      <div class="skill" v-bind:style="{ width: percentage + '%','background-color':this.field.barColor ? this.field.barColor : '#74C25C'}">
         {{ percentage }}%
       </div>
     </div>
@@ -23,8 +24,7 @@ export default {
     return {
       percentage: 0,
       show: true,
-      status:"initializing",
-
+      status:this.field.initLabel ? this.field.initLabel:"initializing",
     };
   },
   methods: {
@@ -61,13 +61,13 @@ export default {
     getStatus()
     {
       if (this.percentage == 0) {
-        return "Initializing"
+        return this.field.initLabel ? this.field.initLabel : "Initializing";
       }
       if(this.percentage>0 && this.percentage<100) {
-        return "Processing";
+        return this.field.processingLabel ? this.field.processingLabel : "Processing";
       }
       if (this.percentage == 100) {
-        return "Done"
+        return  this.field.doneLabel ? this.field.doneLabel : "Done";
       }
 
     }
@@ -80,19 +80,12 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 p {
   font-size: 20px;
 }
 
-.container {
-  background-color: rgb(192, 192, 192);
-  width: 100%;
-  border-radius: 15px;
-}
-
 .skill {
-  background-color: rgb(116, 194, 92);
   color: black;
   padding: 1%;
   text-align: right;
