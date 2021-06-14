@@ -7,7 +7,7 @@ Package Description: A dynamic progress bar field for laravel nova
  
 
 
-![](progress.png)
+![](progress-bar.gif)
 
 ## Installation
 
