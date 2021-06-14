@@ -9,8 +9,8 @@
         {{ percentage }}%
       </div>
     </div>
-    <div style="width:20%;text-align:left;font-weight: 700;">
-      <p v-bind:class="getClass()">
+    <div class="statussection">
+      <p v-bind:class="getClass()" class="inline-block" style="white-space: nowrap;">
         {{ getStatus() }}
       </p>
     </div>
@@ -25,6 +25,7 @@ export default {
       percentage: 0,
       show: true,
       status:this.field.initLabel ? this.field.initLabel:"initializing",
+      redirect:false,
     };
   },
   methods: {
@@ -35,6 +36,9 @@ export default {
           //return response.data;
           this.percentage = response.data.percentage;
           this.show = response.data.show;
+          if (this.percentage !== 100) {
+              this.redirect=true;
+          }
           //alert(response.data);
         })
         .catch((error) => {
@@ -42,10 +46,32 @@ export default {
         });
     },
     setPecentage() {
-      setInterval(() => {
+    var job = setInterval(() => {
         if (this.percentage>=0 && this.percentage < 100) {
           this.getPercentage();
           //this.percentage++;
+        }
+        if(this.percentage == 100)
+        {
+             clearInterval(job);
+            if(this.field.reload && this.redirect){
+                window.location.reload(true);
+                this.redirect= false;
+                return;
+            }
+            if(this.field.redirectUrl != "" && this.redirect){
+                if (this.field.redirectNewTab == true) {
+                    window.open(this.field.redirectUrl, "_blank");
+                    this.redirect= false;
+                    return;
+                }
+                else
+                {
+                    window.open(this.field.redirectUrl,"_self");
+                    this.redirect= false;
+                    return;
+                }
+            }
         }
 
 
@@ -56,6 +82,7 @@ export default {
         processing:this.percentage>0 && this.percentage < 100 ,
         done: this.percentage == 100,
         initializing:this.percentage == 0,
+        animation: (this.percentage>0 && this.percentage < 100 && this.field.animation) ||  ( this.percentage == 0 && this.field.animation),
         };
     },
     getStatus()
@@ -96,7 +123,7 @@ p {
   -o-transition: width 0.5s ease-in-out;
   transition: width 0.5s ease-in-out;
 }
-.processing:after {
+.animation:after {
   overflow: hidden;
   display: inline-block;
   vertical-align: bottom;
@@ -105,7 +132,7 @@ p {
   content: "\2026"; /* ascii code for the ellipsis character */
   width: 0px;
 }
-.initializing:after {
+.animation:after {
   overflow: hidden;
   display: inline-block;
   vertical-align: bottom;
@@ -139,5 +166,31 @@ p {
   to {
     width: 20px;
   }
+}
+
+.statussection{
+    width:20%;
+    text-align:left;
+    font-weight: 700;
+    overflow-y:hidden;
+    overflow-x: scroll;
+}
+::-webkit-scrollbar {
+  height: 2px;
+}
+
+Track
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: gray;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: gray;
 }
 </style>

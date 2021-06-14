@@ -40,7 +40,10 @@ Route::get('/progressbar', function () {
                 ->barBackgroundColor("yellow")
                 ->initLabel("please wait")
                 ->processingLabel("processing")
-                ->doneLabel("all is good"),
+                ->doneLabel("all is good")
+                ->redirectWhenItsDone("https://www.google.com",true)  //second parameter is optional to open the url in new tab or in the same tab 
+                ->reloadWhenItsDone()
+                ->animation(),//show three dots animation when initializing and processing
     ];
     }
 ```

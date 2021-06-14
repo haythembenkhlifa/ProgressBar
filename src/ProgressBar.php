@@ -56,4 +56,18 @@ class ProgressBar extends Field
         return $this->withMeta(["doneLabel" => $doneLabel]);
     }
 
+    public function animation($animation = true)
+    {
+        return $this->withMeta(["animation" => $animation]);
+    }
+
+    public function redirectWhenItsDone($redirectUrl = "",$newTab = false)
+    {
+        return $this->withMeta(["redirectUrl" => $redirectUrl,'redirectNewTab'=>$newTab]);
+    }
+    public function reloadWhenItsDone($reload = true)
+    {
+        return $this->withMeta(["reload" => $reload]);
+    }
+
 }
