@@ -71,7 +71,7 @@ __webpack_require__.r(__webpack_exports__);
         processing: this.percentage > 0 && this.percentage < 100,
         done: this.percentage == 100,
         initializing: this.percentage == 0,
-        animation: this.percentage > 0 && this.percentage < 100 && this.field.animation || this.percentage == 0 && this.field.animation
+        loading: this.percentage > 0 && this.percentage < 100 && this.field.animation || this.percentage == 0 && this.field.animation
       };
     },
     getStatus: function getStatus() {
@@ -222,7 +222,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       'background-color': this.field.barColor ? this.field.barColor : '#74C25C'
     })
   }, null, 4 /* STYLE */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "text-lg",
+    "class": "text-lg flex flex-row",
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)([{
       'color': this.field.textColor ? this.field.textColor : 'white'
     }, {
@@ -1683,7 +1683,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\np[data-v-0224618e] {\n  font-size: 20px;\n}\n.skill[data-v-0224618e] {\n  color: black;\n  padding: 1%;\n  text-align: right;\n  font-size: 20px;\n  height: 30px;\n  border-radius: 10px;\n  transition: width 0.5s ease-in-out;\n}\n.processing[data-v-0224618e] {\n  margin-top: 4%;\n  text-align: left;\n  margin-left: 19%;\n}\n.done[data-v-0224618e] {\n  margin-top: 4%;\n  text-align: left;\n  margin-left: 19%;\n}\n.initializing[data-v-0224618e] {\n  margin-top: 4%;\n  text-align: left;\n  margin-left: 19%;\n}\n@keyframes ellipsis-0224618e {\nto {\n    width: 20px;\n}\n}\n.statussection[data-v-0224618e]{\n    width:20%;\n    text-align:left;\n    font-weight: 700;\n    overflow-y:hidden;\n    overflow-x: scroll;\n}\n[data-v-0224618e]::-webkit-scrollbar {\n  height: 2px;\n}\nTrack[data-v-0224618e]\n::-webkit-scrollbar-track {\n  background: white;\n}\n/* Handle */\n[data-v-0224618e]::-webkit-scrollbar-thumb {\n  background: gray;\n}\n/* Handle on hover */\n[data-v-0224618e]::-webkit-scrollbar-thumb:hover {\n  background: gray;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\np[data-v-0224618e] {\n  font-size: 20px;\n}\n.skill[data-v-0224618e] {\n  color: black;\n  padding: 1%;\n  text-align: right;\n  font-size: 20px;\n  height: 30px;\n  border-radius: 10px;\n  transition: width 0.5s ease-in-out;\n}\n.processing[data-v-0224618e] {\n  margin-top: 4%;\n  text-align: left;\n  margin-left: 19%;\n}\n.done[data-v-0224618e] {\n  margin-top: 4%;\n  text-align: left;\n  margin-left: 19%;\n}\n.initializing[data-v-0224618e] {\n  margin-top: 4%;\n  text-align: left;\n  margin-left: 19%;\n}\n.statussection[data-v-0224618e]{\n    width:20%;\n    text-align:left;\n    font-weight: 700;\n    overflow-y:hidden;\n    overflow-x: scroll;\n}\n[data-v-0224618e]::-webkit-scrollbar {\n  height: 2px;\n}\nTrack[data-v-0224618e]\n::-webkit-scrollbar-track {\n  background: white;\n}\n/* Handle */\n[data-v-0224618e]::-webkit-scrollbar-thumb {\n  background: gray;\n}\n/* Handle on hover */\n[data-v-0224618e]::-webkit-scrollbar-thumb:hover {\n  background: gray;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

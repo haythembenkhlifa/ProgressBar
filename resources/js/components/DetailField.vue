@@ -8,10 +8,9 @@
       <div class="skill" v-bind:style="{ width: percentage + '%','background-color':this.field.barColor ? this.field.barColor : '#74C25C'}">
         
       </div>
-      <span class="text-lg" :style="{'color':this.field.textColor ? this.field.textColor: 'white'}" style="position: absolute;top: 50%; left: 50%; transform: translate(-50%, -50%);">{{ getStatus() }}</span>
-      <span class="text-lg" :style="{'color':this.field.textColor ? this.field.textColor: 'white'}" style=";position: absolute;top: 50%; right: 0%; transform: translate(-50%, -50%);">{{ percentage }}%</span>
+      <span class="text-lg flex flex-row" :style="{'color':this.field.textColor ? this.field.textColor: 'white'}" style="position: absolute;top: 50%; left: 50%; transform: translate(-50%, -50%);">{{ getStatus() }}</span>
+      <span class="text-lg"  :style="{'color':this.field.textColor ? this.field.textColor: 'white'}" style=";position: absolute;top: 50%; right: 0%; transform: translate(-50%, -50%);">{{ percentage }}%</span>
     </div>
-
   </div>
 </template>
 
@@ -78,7 +77,7 @@ export default {
         processing:this.percentage>0 && this.percentage < 100 ,
         done: this.percentage == 100,
         initializing:this.percentage == 0,
-        animation: (this.percentage>0 && this.percentage < 100 && this.field.animation) ||  ( this.percentage == 0 && this.field.animation),
+        loading: (this.percentage>0 && this.percentage < 100 && this.field.animation) ||  ( this.percentage == 0 && this.field.animation),
         };
     },
     getStatus()
@@ -132,16 +131,6 @@ p {
   margin-top: 4%;
   text-align: left;
   margin-left: 19%;
-}
-@keyframes ellipsis {
-  to {
-    width: 20px;
-  }
-}
-@-webkit-keyframes ellipsis {
-  to {
-    width: 20px;
-  }
 }
 .statussection{
     width:20%;
