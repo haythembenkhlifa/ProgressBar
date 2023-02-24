@@ -241,7 +241,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "right": "0%",
       "transform": "translate(-50%, -50%)"
     }])
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.percentage) + "%", 5 /* TEXT, STYLE */)], 4 /* STYLE */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"statussection\">\n      <p v-bind:class=\"getClass()\" class=\"inline-block\" style=\"white-space: nowrap;\">\n        {{ getStatus() }}\n      </p>\n    </div> ")], 512 /* NEED_PATCH */)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.show]]);
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.percentage) + "%", 5 /* TEXT, STYLE */)], 4 /* STYLE */)], 512 /* NEED_PATCH */)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.show]]);
 }
 
 /***/ }),

@@ -11,11 +11,7 @@
       <span class="text-lg" :style="{'color':this.field.textColor ? this.field.textColor: 'white'}" style="position: absolute;top: 50%; left: 50%; transform: translate(-50%, -50%);">{{ getStatus() }}</span>
       <span class="text-lg" :style="{'color':this.field.textColor ? this.field.textColor: 'white'}" style=";position: absolute;top: 50%; right: 0%; transform: translate(-50%, -50%);">{{ percentage }}%</span>
     </div>
-    <!-- <div class="statussection">
-      <p v-bind:class="getClass()" class="inline-block" style="white-space: nowrap;">
-        {{ getStatus() }}
-      </p>
-    </div> -->
+
   </div>
 </template>
 
