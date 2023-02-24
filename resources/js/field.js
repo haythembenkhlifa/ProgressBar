@@ -1,5 +1,9 @@
-Nova.booting((Vue, router, store) => {
-    Vue.component("index-progress-bar", require("./components/IndexField"));
-    Vue.component("detail-progress-bar", require("./components/DetailField"));
-    Vue.component("form-progress-bar", require("./components/FormField"));
-});
+import IndexField from './components/IndexField'
+import DetailField from './components/DetailField'
+import FormField from './components/FormField'
+
+Nova.booting((app, store) => {
+  app.component('index-progress-bar', IndexField)
+  app.component('detail-progress-bar', DetailField)
+  app.component('form-progress-bar', FormField)
+})

@@ -1,25 +1,27 @@
 <template>
   <div class="flex border-b border-40 pb-4 pt-4 -mx-6 px-6" v-show="show">
     <div
-      style="width:80%;background-color: aliceblue;border-radius: 15px;"
+      style="position:relative;width:100%;background-color: aliceblue;border-radius: 10px;"
       :style="{'background-color':this.field.barBackgroundColor ? this.field.barBackgroundColor : '#C0C0C0'}"
       ref="maindiv"
     >
       <div class="skill" v-bind:style="{ width: percentage + '%','background-color':this.field.barColor ? this.field.barColor : '#74C25C'}">
-        {{ percentage }}%
+        
       </div>
+      <span class="text-lg" :style="{'color':this.field.textColor ? this.field.textColor: 'white'}" style="position: absolute;top: 50%; left: 50%; transform: translate(-50%, -50%);">{{ getStatus() }}</span>
+      <span class="text-lg" :style="{'color':this.field.textColor ? this.field.textColor: 'white'}" style=";position: absolute;top: 50%; right: 0%; transform: translate(-50%, -50%);">{{ percentage }}%</span>
     </div>
-    <div class="statussection">
+    <!-- <div class="statussection">
       <p v-bind:class="getClass()" class="inline-block" style="white-space: nowrap;">
         {{ getStatus() }}
       </p>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
 export default {
-  props: ["resource", "resourceName", "resourceId", "field", "callEvery"],
+  props: ['index', 'resource', 'resourceName', 'resourceId', 'field'],
   data() {
     return {
       percentage: 0,
@@ -30,7 +32,7 @@ export default {
   },
   methods: {
     getPercentage() {
-      axios
+      Nova.request()
         .get(this.field.endPoint)
         .then((response) => {
           //return response.data;
@@ -73,8 +75,6 @@ export default {
                 }
             }
         }
-
-
       }, this.field.callEvery);
     },
     getClass() {
@@ -96,7 +96,6 @@ export default {
       if (this.percentage == 100) {
         return  this.field.doneLabel ? this.field.doneLabel : "Done";
       }
-
     }
   },
   mounted() {
@@ -105,41 +104,23 @@ export default {
     }
     this.setPecentage();
   },
-};
+}
 </script>
 <style scoped>
 p {
   font-size: 20px;
 }
-
 .skill {
   color: black;
   padding: 1%;
   text-align: right;
   font-size: 20px;
-  border-radius: 15px;
+  height: 30px;
+  border-radius: 10px;
   -webkit-transition: width 0.5s ease-in-out;
   -moz-transition: width 0.5s ease-in-out;
   -o-transition: width 0.5s ease-in-out;
   transition: width 0.5s ease-in-out;
-}
-.animation:after {
-  overflow: hidden;
-  display: inline-block;
-  vertical-align: bottom;
-  -webkit-animation: ellipsis steps(4, end) 2000ms infinite;
-  animation: ellipsis steps(4, end) 2000ms infinite;
-  content: "\2026"; /* ascii code for the ellipsis character */
-  width: 0px;
-}
-.animation:after {
-  overflow: hidden;
-  display: inline-block;
-  vertical-align: bottom;
-  -webkit-animation: ellipsis steps(4, end) 2000ms infinite;
-  animation: ellipsis steps(4, end) 2000ms infinite;
-  content: "\2026"; /* ascii code for the ellipsis character */
-  width: 0px;
 }
 .processing {
   margin-top: 4%;
@@ -161,13 +142,11 @@ p {
     width: 20px;
   }
 }
-
 @-webkit-keyframes ellipsis {
   to {
     width: 20px;
   }
 }
-
 .statussection{
     width:20%;
     text-align:left;
@@ -178,17 +157,14 @@ p {
 ::-webkit-scrollbar {
   height: 2px;
 }
-
 Track
 ::-webkit-scrollbar-track {
   background: white;
 }
-
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: gray;
 }
-
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: gray;

@@ -13,6 +13,7 @@ class ProgressBar extends Field
      */
     public $component = 'progress-bar';
 
+
     /**
      * Tells the client side component which channel to broadcast on
      * @param $callEvery
@@ -41,6 +42,11 @@ class ProgressBar extends Field
         return $this->withMeta(["barBackgroundColor" => $barBackgroundColor]);
     }
 
+    public function textColor($textColor = 'black')
+    {
+        return $this->withMeta(["textColor" => $textColor]);
+    }
+
     public function initLabel($initLabel = "initializing")
     {
         return $this->withMeta(["initLabel" => $initLabel]);
@@ -61,13 +67,12 @@ class ProgressBar extends Field
         return $this->withMeta(["animation" => $animation]);
     }
 
-    public function redirectWhenItsDone($redirectUrl = "",$newTab = false)
+    public function redirectWhenItsDone($redirectUrl = "", $newTab = false)
     {
-        return $this->withMeta(["redirectUrl" => $redirectUrl,'redirectNewTab'=>$newTab]);
+        return $this->withMeta(["redirectUrl" => $redirectUrl, 'redirectNewTab' => $newTab]);
     }
     public function reloadWhenItsDone($reload = true)
     {
         return $this->withMeta(["reload" => $reload]);
     }
-
 }

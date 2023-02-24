@@ -1,18 +1,18 @@
 <template>
-    <label for="">{{ percentage }}%</label>
+  <span>{{ percentage }}%</span>
 </template>
 
 <script>
 export default {
-    props: ['resourceName', 'field'],
-      data() {
+  props: ['resourceName', 'field'],
+  data() {
     return {
       percentage: 0,
     };
   },
   methods: {
     getPercentage() {
-      axios
+      Nova.request()
         .get(this.field.endPoint)
         .then((response) => {
           //return response.data;
@@ -29,11 +29,14 @@ export default {
           this.getPercentage();
           //this.percentage++;
         }
-
-
       }, this.field.callEvery);
     },
   },
+  computed: {
+    fieldValue() {
+      return this.field.displayedAs || this.field.value
+    },
+  },  
   mounted() {
     if (this.field.markAsDone) {
       this.percentage = 100;
