@@ -8,8 +8,15 @@
       <div class="skill" v-bind:style="{ width: percentage + '%','background-color':this.field.barColor ? this.field.barColor : '#74C25C'}">
         
       </div>
-      <span class="text-lg flex flex-row" :style="{'color':this.field.textColor ? this.field.textColor: 'white'}" style="position: absolute;top: 50%; left: 50%; transform: translate(-50%, -50%);">{{ getStatus() }}</span>
-      <span class="text-lg"  :style="{'color':this.field.textColor ? this.field.textColor: 'white'}" style=";position: absolute;top: 50%; right: 0%; transform: translate(-50%, -50%);">{{ percentage }}%</span>
+      <span class="text-lg flex flex-row overflow-x-scroll" :style="{'color':this.field.textColor ? this.field.textColor: 'white'}" style="position: absolute;top: 50%; left: 50%; transform: translate(-50%, -50%);">
+        <div class="w-12" v-show="(this.percentage>0 && this.percentage < 100 && this.field.animation) ||  ( this.percentage == 0 && this.field.animation)">
+        </div>
+        {{ getStatus() }}
+        <div class="w-12" v-show="(this.percentage>0 && this.percentage < 100 && this.field.animation) ||  ( this.percentage == 0 && this.field.animation)">
+          <h1 class="loading"></h1>
+        </div>
+      </span>
+      <span class="md:text-lg"  :style="{'color':this.field.textColor ? this.field.textColor: 'white'}" style=";position: absolute;top: 50%; right: 0%; transform: translate(-50%, -50%);">{{ percentage }}%</span>
     </div>
   </div>
 </template>
@@ -30,7 +37,6 @@ export default {
       Nova.request()
         .get(this.field.endPoint)
         .then((response) => {
-          //return response.data;
           this.percentage = response.data.percentage;
           this.show = response.data.show;
           if (this.percentage !== 100) {
@@ -153,5 +159,27 @@ Track
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: gray;
+}
+.loading:after {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+  -webkit-animation: ellipsis steps(10, end) 2000ms infinite;
+  animation: ellipsis steps(10, end) 2000ms infinite;
+  content: "\2026";
+  /* ascii code for the ellipsis character */
+  width: 0px;
+}
+
+@keyframes ellipsis {
+  to {
+    width: 40px;
+  }
+}
+
+@-webkit-keyframes ellipsis {
+  to {
+    width: 40px;
+  }
 }
 </style>

@@ -26,7 +26,6 @@ __webpack_require__.r(__webpack_exports__);
     getPercentage: function getPercentage() {
       var _this = this;
       Nova.request().get(this.field.endPoint).then(function (response) {
-        //return response.data;
         _this.percentage = response.data.percentage;
         _this.show = response.data.show;
         if (_this.percentage !== 100) {
@@ -204,6 +203,18 @@ var _withScopeId = function _withScopeId(n) {
 var _hoisted_1 = {
   "class": "flex border-b border-40 pb-4 pt-4 -mx-6 px-6"
 };
+var _hoisted_2 = {
+  "class": "w-12"
+};
+var _hoisted_3 = {
+  "class": "w-12"
+};
+var _hoisted_4 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+    "class": "loading"
+  }, null, -1 /* HOISTED */);
+});
+var _hoisted_5 = [_hoisted_4];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)([{
@@ -222,7 +233,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       'background-color': this.field.barColor ? this.field.barColor : '#74C25C'
     })
   }, null, 4 /* STYLE */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "text-lg flex flex-row",
+    "class": "text-lg flex flex-row overflow-x-scroll",
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)([{
       'color': this.field.textColor ? this.field.textColor : 'white'
     }, {
@@ -231,8 +242,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "left": "50%",
       "transform": "translate(-50%, -50%)"
     }])
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.getStatus()), 5 /* TEXT, STYLE */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "text-lg",
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, this.percentage > 0 && this.percentage < 100 && this.field.animation || this.percentage == 0 && this.field.animation]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.getStatus()) + " ", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, _hoisted_5, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, this.percentage > 0 && this.percentage < 100 && this.field.animation || this.percentage == 0 && this.field.animation]])], 4 /* STYLE */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "md:text-lg",
     style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)([{
       'color': this.field.textColor ? this.field.textColor : 'white'
     }, {
@@ -1683,7 +1694,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\np[data-v-0224618e] {\n  font-size: 20px;\n}\n.skill[data-v-0224618e] {\n  color: black;\n  padding: 1%;\n  text-align: right;\n  font-size: 20px;\n  height: 30px;\n  border-radius: 10px;\n  transition: width 0.5s ease-in-out;\n}\n.processing[data-v-0224618e] {\n  margin-top: 4%;\n  text-align: left;\n  margin-left: 19%;\n}\n.done[data-v-0224618e] {\n  margin-top: 4%;\n  text-align: left;\n  margin-left: 19%;\n}\n.initializing[data-v-0224618e] {\n  margin-top: 4%;\n  text-align: left;\n  margin-left: 19%;\n}\n.statussection[data-v-0224618e]{\n    width:20%;\n    text-align:left;\n    font-weight: 700;\n    overflow-y:hidden;\n    overflow-x: scroll;\n}\n[data-v-0224618e]::-webkit-scrollbar {\n  height: 2px;\n}\nTrack[data-v-0224618e]\n::-webkit-scrollbar-track {\n  background: white;\n}\n/* Handle */\n[data-v-0224618e]::-webkit-scrollbar-thumb {\n  background: gray;\n}\n/* Handle on hover */\n[data-v-0224618e]::-webkit-scrollbar-thumb:hover {\n  background: gray;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\np[data-v-0224618e] {\n  font-size: 20px;\n}\n.skill[data-v-0224618e] {\n  color: black;\n  padding: 1%;\n  text-align: right;\n  font-size: 20px;\n  height: 30px;\n  border-radius: 10px;\n  transition: width 0.5s ease-in-out;\n}\n.processing[data-v-0224618e] {\n  margin-top: 4%;\n  text-align: left;\n  margin-left: 19%;\n}\n.done[data-v-0224618e] {\n  margin-top: 4%;\n  text-align: left;\n  margin-left: 19%;\n}\n.initializing[data-v-0224618e] {\n  margin-top: 4%;\n  text-align: left;\n  margin-left: 19%;\n}\n.statussection[data-v-0224618e]{\n    width:20%;\n    text-align:left;\n    font-weight: 700;\n    overflow-y:hidden;\n    overflow-x: scroll;\n}\n[data-v-0224618e]::-webkit-scrollbar {\n  height: 2px;\n}\nTrack[data-v-0224618e]\n::-webkit-scrollbar-track {\n  background: white;\n}\n/* Handle */\n[data-v-0224618e]::-webkit-scrollbar-thumb {\n  background: gray;\n}\n/* Handle on hover */\n[data-v-0224618e]::-webkit-scrollbar-thumb:hover {\n  background: gray;\n}\n.loading[data-v-0224618e]:after {\n  overflow: hidden;\n  display: inline-block;\n  vertical-align: bottom;\n  animation: ellipsis-0224618e steps(10, end) 2000ms infinite;\n  content: \"\\2026\";\n  /* ascii code for the ellipsis character */\n  width: 0px;\n}\n@keyframes ellipsis-0224618e {\nto {\n    width: 40px;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
