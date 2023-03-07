@@ -3,6 +3,7 @@
 [![Packagist](https://img.shields.io/packagist/v/haythem/progress-bar.svg)](https://packagist.org/packages/haythem/)
 [![Packagist](https://img.shields.io/packagist/l/haythem/progress-bar.svg)](https://packagist.org/packages/haythem/progress-bar)
 [![Github All Releases](https://img.shields.io/github/downloads/haythem/progress-bar/total.svg)]()
+[![Github All Releases](https://img.shields.io/github/downloads/atom/atom/total.svg)]()
 
 Package Description: A dynamic progress bar field for laravel nova
 
