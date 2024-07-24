@@ -7,6 +7,9 @@ Package Description: A dynamic progress bar field for laravel nova
 
 ![](img/desktop.png)
 ![](img/mobile.png)
+![](img/forms view with percentage.png)
+![](img/forms view with progress bar.png)
+![](img/index view.png)
 
 ## Installation
 
@@ -42,9 +45,10 @@ Route::get('/progressbar', function () {
                 ->initLabel("please wait")
                 ->processingLabel("processing")
                 ->doneLabel("all is good")
-                ->redirectWhenItsDone("https://www.google.com",true)  //second parameter is optional to open the url in new tab or in the same tab
+                ->redirectWhenItsDone("https://www.google.com",true)  //second parameter is optional to open the url in new tab or in the same tab.
                 ->reloadWhenItsDone()
-                ->animation(),//show three dots animation when initializing and processing
+                ->showProgressBarInForms(true) // you can show progress bar in forms.
+                ->animation(),//show three dots animation when initializing and processing.
     ];
     }
 ```

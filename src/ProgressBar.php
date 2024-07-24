@@ -23,10 +23,12 @@ class ProgressBar extends Field
     {
         return $this->withMeta(["callEvery" => $callEvery]);
     }
+    
     public function endPoint($endPoint = "")
     {
         return $this->withMeta(["endPoint" => $endPoint]);
     }
+
     public function markAsDone($markAsDone = false)
     {
         return $this->withMeta(["markAsDone" => $markAsDone]);
@@ -71,8 +73,14 @@ class ProgressBar extends Field
     {
         return $this->withMeta(["redirectUrl" => $redirectUrl, 'redirectNewTab' => $newTab]);
     }
+
     public function reloadWhenItsDone($reload = true)
     {
         return $this->withMeta(["reload" => $reload]);
+    }
+
+    public function showProgressBarInForms($showProgressBarInForms = false)
+    {
+        return $this->withMeta(["showProgressBarInForms" => $showProgressBarInForms]);
     }
 }

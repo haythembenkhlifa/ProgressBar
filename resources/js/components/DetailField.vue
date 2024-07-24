@@ -16,7 +16,7 @@
           <h1 class="loading"></h1>
         </div>
       </span>
-      <span class="md:text-lg"  :style="{'color':this.field.textColor ? this.field.textColor: 'white'}" style=";position: absolute;top: 50%; right: 0%; transform: translate(-50%, -50%);">{{ percentage }}%</span>
+      <span class="md:text-lg"  :style="{'color':this.field.textColor ? this.field.textColor: 'white'}" style="position: absolute;top: 50%; right: 0%; transform: translate(-50%, -50%);">{{ percentage }}%</span>
     </div>
   </div>
 </template>
