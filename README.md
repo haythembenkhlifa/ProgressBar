@@ -7,9 +7,9 @@ Package Description: A dynamic progress bar field for laravel nova
 
 ![](img/desktop.png)
 ![](img/mobile.png)
-![](img/forms view with percentage.png)
-![](img/forms view with progress bar.png)
-![](img/index view.png)
+![](img/forms-view-with-percentage.png)
+![](img/forms-view-with-progress-bar.png)
+![](img/index-view.png)
 
 ## Installation
 
