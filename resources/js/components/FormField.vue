@@ -45,6 +45,8 @@ export default {
 
   data() {
     return {
+      activeIntervals: [],
+      pull: true,
       percentage: 0,
       show: true,
       status: this.field.initLabel ? this.field.initLabel : "initializing",
@@ -67,14 +69,16 @@ export default {
           console.log(error.response.data);
         });
     },
-    setPecentage() {
-      var job = setInterval(() => {
+    startPulling() {
+      this.stopPulling();
+
+      let intervalId = setInterval(() => {
         if (this.percentage >= 0 && this.percentage < 100) {
           this.getPercentage();
           //this.percentage++;
         }
         if (this.percentage == 100) {
-          clearInterval(job);
+          this.stopPulling();
           if (this.field.reload && this.redirect) {
             window.location.reload(true);
             this.redirect = false;
@@ -94,6 +98,21 @@ export default {
           }
         }
       }, this.field.callEvery);
+
+      this.activeIntervals.push(intervalId);
+    },
+    stopPulling() {
+      this.activeIntervals.forEach(intervalId => {
+        clearInterval(intervalId);
+      });
+      this.activeIntervals = [];
+    },
+    handleVisibilityAndFocus() {
+      if (document.visibilityState === "hidden") {
+        this.stopPulling();
+      } else {
+        this.startPulling();
+      }
     },
     getClass() {
       return {
@@ -119,7 +138,15 @@ export default {
     if (this.field.markAsDone) {
       this.percentage = 100;
     }
-    this.setPecentage();
+
+    this.startPulling();
+    // Add event listeners for visibilitychange, blur, and focus
+    document.addEventListener("visibilitychange", this.handleVisibilityAndFocus);
+
+  },
+  unmounted() {
+    this.stopPulling();
+    document.removeEventListener("visibilitychange", this.handleVisibilityAndFocus);
   },
 }
 </script>
